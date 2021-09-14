@@ -1,0 +1,16 @@
+@import "src/utilities/variables";
+
+$background_color: rgb(19, 23, 35);
+$text_primary: $white_primary;
+
+span {
+	color: $text_primary;
+}
+
+.main_wrapper {
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	background-color: $background_color;
+}
