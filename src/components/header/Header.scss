@@ -5,19 +5,16 @@
   border-bottom: 1px transparentize($gray-primary, 0.7) solid;
   padding-bottom: 5px;
   .label {
-    margin: auto {
-      left: 20px;
-      top: 10px;
-    }
+    margin-left: 20px;
+    margin-top: 10px;
     float: left;
   }
+  //Might be a bug in CRA, but sometimes nesting padding breaks
   .spread {
-    padding: auto {
-      right: 10%;
-      top: 1%;
-    }
-    .text {
-      color: $gray-primary;
-    }
+    padding-right: 10%;
+    padding-top: 0.75%;
+  }
+  .text {
+    color: $gray-primary;
   }
 }

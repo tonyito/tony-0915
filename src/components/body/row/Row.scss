@@ -6,6 +6,8 @@
   height: 100%;
   z-index: 1;
   top: -7px; //Kind of a magic number
+  //Using transparentize instead of opacity because of a known CRA bug
+  //https://stackoverflow.com/questions/58853844/the-opacity-value-was-changed-to-1-after-building-the-reacjs-project
   &.bid {
     float: right;
     right: 0;
