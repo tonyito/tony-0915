@@ -22,6 +22,7 @@ export const Main = () => {
    * @TODO: Implement responsiveness either by grabbing screen size via
    * window object, or component dimensions via useRef hook.
    */
+  //@ts-ignore
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   //Current feed for selected currency. Toggled via button.
