@@ -1,15 +1,8 @@
 import { Modal } from "antd";
-import message from "antd/lib/message";
 import { isNil } from "lodash";
 import { useEffect, useState } from "react";
-import {
-  FeedValues,
-  InitialPriceData,
-  PriceData,
-  PriceDeltas,
-} from "../utilities/PriceData";
+import { Currency, PriceData } from "../utilities/PriceData";
 import { receiveData, reconnect, socket } from "../utilities/requests";
-import { WebSocketMessages } from "../utilities/WebSocketMessages";
 import { Body } from "./body/Body";
 import { Footer } from "./footer/Footer";
 import { Header } from "./header/Header";
@@ -21,14 +14,31 @@ export const Main = () => {
   const [priceDataState, setPriceDataState] = useState<PriceData>(
     new PriceData()
   );
-  //Resposiveness flag to change layout of the feed
+
+  /* Resposiveness flag to change layout of the feed
+   * I've implemented some of this, but since it's not a hard requirement,
+   * I'll mark it as a todo.
+   *
+   * @TODO: Implement responsiveness either by grabbing screen size via
+   * window object, or component dimensions via useRef hook.
+   */
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  //Detect connection
+  //Current feed for selected currency. Toggled via button.
+  const [currency, setCurrency] = useState<Currency>(Currency.XBT);
+
+  /* Flag to allow throttling. A more intricate method of determining whether
+   * or not to throttle can be created by utilizing the performance API.
+   * Although it is in the success crieteria, for this activity, I'm going
+   * to consider the detection implementation out-of scope.
+   */
+
   const shouldThrottle = false;
 
+  let throttler: NodeJS.Timeout | null;
+
   useEffect(() => {
-    const throttler = receiveData(shouldThrottle, setPriceDataState);
+    throttler = receiveData(shouldThrottle, setPriceDataState);
 
     //Dangling reference cleanup
     return () => {
@@ -66,9 +76,12 @@ export const Main = () => {
                 </div>
               ),
               onOk() {
+                //Re-open the connection once the user comes back
+                //Be sure if throttler is enabled, to clear it so there aren't two of them running
+                if (throttler) clearInterval(throttler);
                 reconnect();
                 isHidden = false;
-                receiveData(shouldThrottle, setPriceDataState);
+                throttler = receiveData(shouldThrottle, setPriceDataState);
               },
             });
             isHidden = true;
@@ -80,9 +93,9 @@ export const Main = () => {
 
   return (
     <div className="main_wrapper">
-      <Header />
+      <Header priceDataState={priceDataState} />
       <Body isMobile={isMobile} priceDataState={priceDataState} />
-      <Footer />
+      <Footer currency={currency} setCurrency={setCurrency} />
     </div>
   );
 };

@@ -8,12 +8,12 @@ import {
 } from "./PriceData";
 import { WebSocketMessages } from "./WebSocketMessages";
 
-export let socket = new WebSocket("wss://www.cryptofacilities.com/ws/v1");
+const SOCKET_URL = "wss://www.cryptofacilities.com/ws/v1";
 
-// setInterval(() => console.log(socket.readyState), 500);
+export let socket = new WebSocket(SOCKET_URL);
 
 export const reconnect = () => {
-  socket = new WebSocket("wss://www.cryptofacilities.com/ws/v1");
+  socket = new WebSocket(SOCKET_URL);
 };
 export const receiveData = (
   shouldThrottle: boolean,
@@ -26,7 +26,7 @@ export const receiveData = (
   if (shouldThrottle) {
     throttler = setInterval(() => {
       setPriceDataState({ ...priceData });
-    }, 500);
+    }, 100);
   }
   try {
     socket.onopen = () => {

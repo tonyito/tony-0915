@@ -1,14 +1,17 @@
 import { message } from "antd";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Currency } from "../../utilities/PriceData";
 import { socket } from "../../utilities/requests";
 import { WebSocketMessages } from "../../utilities/WebSocketMessages";
 
 import "./Footer.scss";
 
-export const Footer = () => {
-  const [currency, setCurrency] = useState<Currency>(Currency.XBT);
+type FooterProps = {
+  currency: Currency;
+  setCurrency: Dispatch<SetStateAction<Currency>>;
+};
 
+export const Footer = ({ currency, setCurrency }: FooterProps) => {
   const toggleCurrency = () => {
     try {
       switch (currency) {
