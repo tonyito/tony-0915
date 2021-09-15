@@ -1,0 +1,19 @@
+@import "src/utilities/variables";
+
+.column_wrapper {
+  display: flex;
+  width: calc(100% / 3);
+  .text {
+    width: 100%;
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco,
+      Bitstream Vera Sans Mono, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    &.ask_color {
+      color: $red-primary;
+    }
+    &.bid_color {
+      color: $green-primary;
+    }
+  }
+}

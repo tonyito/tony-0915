@@ -1,0 +1,21 @@
+@import "src/utilities/variables";
+
+.labels {
+  display: flex;
+  justify-content: flex-end;
+  height: 5%;
+  border-bottom: 1px transparentize($gray-primary, 0.9) solid;
+  padding-top: 5px;
+  .text {
+    width: calc(100% / 3);
+    color: transparentize($gray-primary, 0.3);
+    text-align: right;
+
+    &.ask {
+      padding-right: 15%;
+    }
+    &.bid {
+      padding-right: 12%;
+    }
+  }
+}

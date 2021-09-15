@@ -1,0 +1,35 @@
+@import "src/utilities/variables";
+
+// Stacks the depth color bar against each row on z axis
+.color_bar {
+  position: absolute;
+  height: 100%;
+  opacity: 30%;
+  z-index: 1;
+  top: -7px; //Kind of a magic number
+  &.bid {
+    float: right;
+    right: 0;
+    background-color: $green-primary;
+  }
+  &.ask {
+    background-color: $red-primary;
+  }
+}
+
+.body_row_wrapper {
+  height: calc(100% / 16); //Assuming 16 is the max num of rows
+  position: relative;
+}
+
+.body_row {
+  display: flex;
+  z-index: 0;
+  &.ask {
+    justify-content: flex-start;
+    padding-right: 5%;
+  }
+  &.bid {
+    justify-content: flex-end;
+  }
+}
