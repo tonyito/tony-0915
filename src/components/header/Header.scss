@@ -1,14 +1,14 @@
 @import "src/utilities/variables";
 
 .header {
-	display: flex;
-	height: 5%;
-	border-bottom: 1px transparentize($gray-primary, 0.7) solid;
-	padding-bottom: 5px;
-	.label {
-		margin: auto {
-			left: 20px;
-			top: 10px;
-		}
-	}
+  display: flex;
+  height: 7%;
+  border-bottom: 1px transparentize($gray-primary, 0.7) solid;
+  padding-bottom: 5px;
+  .label {
+    margin: auto {
+      left: 20px;
+      top: 10px;
+    }
+  }
 }

@@ -5,7 +5,7 @@ import { Total } from "../column/Total";
 
 import "./Row.scss";
 
-type Props = {
+type RowProps = {
   largerTotal: number;
   isMobile: boolean;
   price: number;
@@ -21,7 +21,7 @@ export const Row = ({
   side,
   size,
   total,
-}: Props) => {
+}: RowProps) => {
   return (
     <div className="body_row_wrapper">
       <div

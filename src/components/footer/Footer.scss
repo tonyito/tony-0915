@@ -1,0 +1,13 @@
+@import "src/utilities/variables";
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  .toggle_button {
+    margin-bottom: 1.3%;
+    background-color: rgb(87, 65, 217);
+    border: none;
+    color: $white_primary;
+  }
+}

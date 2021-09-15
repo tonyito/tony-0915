@@ -1,6 +1,7 @@
-import {Main} from './components/Main';
+import { Main } from "./components/Main";
 
-import './App.scss';
+import "./App.scss";
+import "antd/dist/antd.css";
 
 function App() {
   return (

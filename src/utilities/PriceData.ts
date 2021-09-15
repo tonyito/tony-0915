@@ -25,11 +25,13 @@ export class PriceDeltas extends PriceData {
       const [price, size] = bid;
       if (!size) allBids.delete(price);
       else allBids.set(price, size);
+      return;
     });
     this.asks.map((ask) => {
       const [price, size] = ask;
       if (!size) allAsks.delete(price);
       else allAsks.set(price, size);
+      return;
     });
     this.truncatePriceData(priceData);
   }
@@ -81,4 +83,9 @@ export enum FeedValues {
 export enum Side {
   BID = "bid",
   ASK = "ask",
+}
+
+export enum Currency {
+  XBT = "XBT",
+  ETH = "ETH",
 }

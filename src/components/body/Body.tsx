@@ -4,12 +4,12 @@ import { Row } from "./row/Row";
 import "./Body.scss";
 import Labels from "./row/Labels";
 
-type Props = {
+type BodyProps = {
   isMobile: boolean;
   priceDataState: PriceData;
 };
 
-export const Body = ({ isMobile, priceDataState }: Props) => {
+export const Body = ({ isMobile, priceDataState }: BodyProps) => {
   const { allBids, allAsks } = priceDataState;
 
   const bidsArr = Array.from(allBids).slice(0, PriceData.MAX_ROWS);
@@ -22,7 +22,7 @@ export const Body = ({ isMobile, priceDataState }: Props) => {
   );
 
   let bidTotal = 0;
-  const bidRows = bidsArr.map((bid) => {
+  const bidRows = bidsArr.map((bid, idx) => {
     const [price, size] = bid;
     bidTotal += size;
     const total = bidTotal;
@@ -34,11 +34,11 @@ export const Body = ({ isMobile, priceDataState }: Props) => {
       size,
       total,
     };
-    return <Row {...rowProps} />;
+    return <Row key={`bid_row_${idx}`} {...rowProps} />;
   });
 
   let askTotal = 0;
-  const askRows = asksArr.map((ask) => {
+  const askRows = asksArr.map((ask, idx) => {
     const [price, size] = ask;
     askTotal += size;
     const total = askTotal;
@@ -50,7 +50,7 @@ export const Body = ({ isMobile, priceDataState }: Props) => {
       size,
       total,
     };
-    return <Row {...rowProps} />;
+    return <Row key={`ask_row_${idx}`} {...rowProps} />;
   });
   return (
     <>
