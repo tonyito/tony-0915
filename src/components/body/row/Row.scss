@@ -4,16 +4,15 @@
 .color_bar {
   position: absolute;
   height: 100%;
-  opacity: 30%;
   z-index: 1;
   top: -7px; //Kind of a magic number
   &.bid {
     float: right;
     right: 0;
-    background-color: $green-primary;
+    background-color: transparentize($green-primary, 0.8);
   }
   &.ask {
-    background-color: $red-primary;
+    background-color: transparentize($red-primary, 0.8);
   }
 }
 
